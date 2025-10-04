@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KolamAI - Mathematical Pattern Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Upload Screen -->
+    <div id="uploadScreen" class="screen active">
+        <div class="upload-container">
+            <div class="logo">
+                <h1>KolamAI</h1>
+                <p class="tagline">Discover the Mathematics in Traditional Art</p>
+            </div>
+            
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📷</div>
+                <h2>Upload Kolam Pattern</h2>
+                <p>Drag & drop your image here or click to browse</p>
+                <input type="file" id="fileInput" accept="image/*" hidden>
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    Choose Image
+                </button>
+            </div>
+            
+            <div id="uploadStatus" class="upload-status hidden">
+                <div class="loader"></div>
+                <p>Analyzing pattern...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="screen">
+        <div class="results-container">
+            <!-- Left Panel: Canvas Animation -->
+            <div class="canvas-panel">
+                <div class="canvas-header">
+                    <h2>Pattern Visualization</h2>
+                    <button class="back-btn" onclick="resetApp()">← New Pattern</button>
+                </div>
+                
+                <canvas id="kolamCanvas" width="600" height="600"></canvas>
+                
+                <div class="animation-controls">
+                    <button id="playPauseBtn" class="control-btn">
+                        <span id="playIcon">▶</span>
+                    </button>
+                    <button id="resetBtn" class="control-btn">↻</button>
+                    <div class="speed-control">
+                        <label>Speed:</label>
+                        <input type="range" id="speedSlider" min="0.5" max="3" step="0.5" value="1">
+                        <span id="speedValue">1x</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Data & Metadata -->
+            <div class="data-panel">
+                <div class="section">
+                    <h3>Pattern Information</h3>
+                    <div class="metadata-grid">
+                        <div class="metadata-item">
+                            <span class="label">Type:</span>
+                            <span class="value" id="patternType">-</span>
+                        </div>
+                        <div class="metadata-item">
+                            <span class="label">Symmetry:</span>
+                            <span class="value" id="symmetry">-</span>
+                        </div>
+                        <div class="metadata-item">
+                            <span class="label">Grid:</span>
+                            <span class="value" id="gridSize">-</span>
+                        </div>
+                        <div class="metadata-item">
+                            <span class="label">Complexity:</span>
+                            <span class="value" id="complexity">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Parametric Equations</h3>
+                    <div class="equation-box">
+                        <div class="equation">
+                            <span class="eq-label">x(t) =</span>
+                            <code id="xEquation">-</code>
+                        </div>
+                        <div class="equation">
+                            <span class="eq-label">y(t) =</span>
+                            <code id="yEquation">-</code>
+                        </div>
+                        <div class="equation-info">
+                            <span>Domain: <code id="domain">-</code></span>
+                            <span>R² = <code id="rSquared">-</code></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3>Grid Configuration</h3>
+                    <div class="grid-info">
+                        <p><strong>Type:</strong> <span id="gridType">-</span></p>
+                        <p><strong>Dimensions:</strong> <span id="gridDimensions">-</span></p>
+                        <p><strong>Total Points:</strong> <span id="totalPoints">-</span></p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn primary" onclick="exportSVG()">
+                        📥 Export SVG
+                    </button>
+                    <button class="action-btn secondary" onclick="saveEquation()">
+                        💾 Save Equation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
